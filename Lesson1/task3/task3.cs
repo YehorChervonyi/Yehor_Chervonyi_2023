@@ -1,10 +1,27 @@
 ﻿List<int> usernumbers = new List<int>();
+int count = 0;
 for (int i = 0; i < 10; i++)
 {
     Console.Write($"Type {i + 1} number: ");
-    usernumbers.Add(int.Parse(Console.ReadLine()));
+    usernumbers.Add(Convert.ToInt32(Console.ReadLine()));
 }
-foreach (int i in usernumbers)
+for (int i = 0; i < 10; i++)
 {
-    Console.WriteLine($"{i}");
+    count = 0;
+   for (int j = i ; j < 10; j++)
+    {
+        if (usernumbers[i] == usernumbers[j])
+        {
+            count++;
+        }
+    }
+   if (count > 1)
+    {
+        usernumbers.Add(usernumbers[i]);
+    }
+}
+
+for (int i = 0; i < usernumbers.Count; i++)
+{
+    Console.WriteLine(usernumbers[i]);
 }
