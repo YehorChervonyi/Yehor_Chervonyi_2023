@@ -4,13 +4,13 @@ Console.Write("Type second string: ");
 string userinput2 = Console.ReadLine();
 if (userinput1.Length > userinput2.Length)
 {
-    Console.WriteLine(userinput2 + userinput1);
+    Console.WriteLine($"Concated result: {userinput1} {userinput2} ");
 }
 else if (userinput2.Length > userinput1.Length && userinput1.Length != userinput2.Length)
 {
     string[] userinput2split = userinput2.Split(userinput1[0]);
     foreach (string element in userinput2split)
     {
-        Console.Write(element+" ");
+        Console.Write(element + " ");
     }
 }
