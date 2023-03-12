@@ -12,14 +12,14 @@ foreach (var person in showall)
 {
     Console.WriteLine($"{person.Name} - {person.Age}");
 }
+// Ask for ages
 Console.Write("Write age to start with: ");
 int startage = Convert.ToInt32(Console.ReadLine());
 
 Console.Write("Write age to end with: ");
 int endage = Convert.ToInt32(Console.ReadLine());
 
-//Main task
-
+// Main task
 var filter = from x in people where x.Age >= startage && x.Age <= endage select x;
 foreach(var person in filter)
 {
