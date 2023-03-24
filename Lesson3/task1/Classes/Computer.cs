@@ -15,6 +15,218 @@ public class Computer
         Mboard = mboard;
     }
 
+    public Motherboard UserAskMboard()
+    {
+        Dictionary<string, int> connectInterface = new Dictionary<string, int>();
+        Console.WriteLine("Fill In");
+        Console.Write("Price: ");
+        int price = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Supplier: ");
+        string supplier = Console.ReadLine();
+
+        Console.Write("Country: ");
+        string country = Console.ReadLine();
+
+        Console.Write("Name: ");
+        string name = Console.ReadLine();
+
+        Console.Write("Socket: ");
+        string socket = Console.ReadLine();
+
+        Console.Write("CPU slots ammount: ");
+        int cpuslots = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("DDR slots ammount: ");
+        int slotsCount = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("RAM support: ");
+        string ramSupport = Console.ReadLine();
+
+        Console.Write("GPUs support (ammount of PCI-E slots): ");
+        int pcieslots = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Ammount of types interfaces: ");
+        var iterratons = Convert.ToInt32(Console.ReadLine());
+        for (int i = 0; i < iterratons; i++)
+        {
+            Console.Write("Connect interface: ");
+            string coninterface = Console.ReadLine();
+
+            Console.Write($"Type ammount of {coninterface}: ");
+            var ammount = Convert.ToInt32(Console.ReadLine());
+            connectInterface.Add(coninterface, ammount);
+        }
+
+        var mboard = new Motherboard
+        (
+            price, supplier, country, name,
+            socket, cpuslots, slotsCount, ramSupport,
+            pcieslots, connectInterface
+        );
+        return mboard;
+    }
+
+    public Cpu UserAskCpu()
+    {
+        Console.WriteLine("Fill In");
+        Console.Write("Price: ");
+        int price = Convert.ToInt32(Console.ReadLine());
+                
+        Console.Write("Supplier: ");
+        string supplier = Console.ReadLine();
+                
+        Console.Write("Country: ");
+        string country = Console.ReadLine();
+                
+        Console.Write("Name: ");
+        string name = Console.ReadLine();
+                
+        Console.Write("Socket: ");
+        string socket = Console.ReadLine();
+
+        Console.Write("Cores: ");
+        string cores = Console.ReadLine();
+
+        Console.Write("Frequency: ");
+        string frequency = Console.ReadLine();
+
+        if (this.Mboard.Socket == socket)
+        {
+            var cpu = new Cpu(price, supplier, country, name, socket, cores, frequency);
+            return cpu;
+        }
+        else
+        {
+            Console.WriteLine("\nWrong CPU socket! CPU wasn`t add\n");
+            return null;
+        }
+    }
+
+    public Ram UserAskRam()
+    {
+        Console.WriteLine("Fill In");
+        Console.Write("Price: ");
+        int price = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Supplier: ");
+        string supplier = Console.ReadLine();
+        
+        Console.Write("Country: ");
+        string country = Console.ReadLine();
+        
+        Console.Write("Name: ");
+        string name = Console.ReadLine();
+                
+        Console.Write("Type: ");
+        string type = Console.ReadLine();
+
+        Console.Write("Size: ");
+        string size = Console.ReadLine();
+
+        if (this.Mboard.RamSupport == type)
+        {
+            var ram = new Ram(price, supplier, country, name, type, size);
+            return ram;
+
+        }
+        else
+        {
+            Console.WriteLine("\nWrong RAM type! RAM wasn`t add\n");
+            return null;
+        }
+    }
+
+    public Gpu UserAskGpu()
+    {
+        Console.WriteLine("Fill In");
+        Console.Write("Price: ");
+        int price = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Supplier: ");
+        string supplier = Console.ReadLine();
+        
+        Console.Write("Country: ");
+        string country = Console.ReadLine();
+        
+        Console.Write("Name: ");
+        string name = Console.ReadLine();
+                
+        Console.Write("Memory: ");
+        string memory = Console.ReadLine();
+
+        Console.Write("Speed: ");
+        string speed = Console.ReadLine();
+                
+        var gpu = new Gpu(price, supplier, country, name, memory, speed);
+        return gpu;
+    }
+
+    public Drive UserAskDrive()
+    {
+        string lifetime = "";
+        Console.WriteLine("Fill In");
+        Console.Write("Price: ");
+        int price = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Supplier: ");
+        string supplier = Console.ReadLine();
+        
+        Console.Write("Country: ");
+        string country = Console.ReadLine();
+        
+        Console.Write("Name: ");
+        string name = Console.ReadLine();
+            
+        Console.Write("Size: ");
+        string size = Console.ReadLine();
+
+        Console.Write("Type: ");
+        string type = Console.ReadLine();
+    
+        Console.Write("Connect Interface: ");
+        string connectinterface = Console.ReadLine();
+    
+        Console.Write("Speed: ");
+        string speed = Console.ReadLine();
+
+        if (type == "SSD")
+        {
+            Console.Write("Lifetime: ");
+            lifetime = Console.ReadLine();
+        }
+
+        var allInterfaces = from x in this.Mboard.ConnectInterface where x.Value > 0 select x;
+        foreach (var coninterface in allInterfaces)
+        {
+            if (coninterface.Key == connectinterface)
+            {
+                var drive = new Drive(price, supplier, country, name, size, type, connectinterface, speed, lifetime);
+                this.Mboard.ConnectInterface[$"{connectinterface}"] -= 1;
+                return drive;
+
+            }
+            else
+            {
+                Console.WriteLine("\nWrong Connection interface! Drive wasn`t add\n");
+                return null;
+            }
+        }
+
+        return null;
+    }
+
+    public void AddMboardFromStock(Motherboard mboard)
+    {
+        this.Mboard =null;
+        this.Cpu.Clear();
+        this.Ram.Clear();
+        this.Gpu.Clear();
+        this.Drive.Clear();
+        AddMboard(mboard);
+        
+    }
+
     public string ShowAllInfo()
     {
         string result = "\n--Computer Info--\n";

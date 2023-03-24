@@ -1,7 +1,7 @@
 ﻿using task1.Classes;
-using task1.Classes.Details;
 // Details stock
-var motherboards = new List<Motherboard>()
+using task1.Classes.Details;
+List<Motherboard> motherboards = new List<Motherboard>()
 {
     new Motherboard
         (
@@ -56,7 +56,7 @@ var motherboards = new List<Motherboard>()
     )
 
 };
-var cpus = new List<Cpu>()
+List<Cpu> cpus = new List<Cpu>()
 {
     new Cpu
         (
@@ -120,7 +120,7 @@ var cpus = new List<Cpu>()
             "2930MHz"
         )
 };
-var rams = new List<Ram>()
+List<Ram> rams = new List<Ram>()
 {
     new Ram
         (
@@ -213,7 +213,7 @@ var rams = new List<Ram>()
         "2048MB"
     ),
 };
-var drives = new List<Drive>()
+List<Drive> drives = new List<Drive>()
 {
     new Drive
     (
@@ -300,7 +300,7 @@ var drives = new List<Drive>()
         "20 years"
     ),
 };
-var gpus = new List<Gpu>()
+List<Gpu> gpus = new List<Gpu>()
 {
     new Gpu
         (
@@ -387,13 +387,8 @@ while (true)
                     {
                         if (mboard.Name == userinput)
                         {
-                            computer.Mboard =null;
-                            computer.Cpu.Clear();
-                            computer.Ram.Clear();
-                            computer.Gpu.Clear();
-                            computer.Drive.Clear();
                             cartCount = 0;
-                            computer.AddMboard(mboard);
+                            computer.AddMboardFromStock(mboard);
                             cpuslots = computer.Mboard.CpuSlots;
                             ramslots = computer.Mboard.SlotsCount;
                             pcieslots = computer.Mboard.PcieSlots;
