@@ -323,7 +323,6 @@ List<Gpu> gpus = new List<Gpu>()
 };
 
 //Main programm
-
 Console.Write("Enter your all computer budget: ");
 int userBudget = Convert.ToInt32(Console.ReadLine());
 var computer = new Computer();
@@ -400,7 +399,6 @@ while (true)
                     break;
             }
             break;
-        
         case "2":
             number = 1;
             if (computer.Mboard != null)
@@ -450,7 +448,6 @@ while (true)
                 {
                     Console.WriteLine("No free sockets on Motherboard");
                 }
-                
             }
             else
             {
@@ -461,9 +458,7 @@ while (true)
                 }
                 Console.WriteLine("You dont have Motherboard to add a CPU\n");
             }
-            
             break;
-        
         case "3":
             number = 1;
             if (computer.Mboard != null)
@@ -524,7 +519,6 @@ while (true)
                 Console.WriteLine("You dont have Motherboard to add a RAM\n");
             }
             break;
-        
         case "4":
             number = 1;
             if (computer.Mboard != null)
@@ -585,14 +579,12 @@ while (true)
                 Console.WriteLine("You dont have Motherboard to add a GPU\n");
             }
             break;
-        
         case "5":
             number = 1;
             if (computer.Mboard != null)
             {
                 if (conninterfaces>0)
                 {
-                    
                     IEnumerable<Drive> bdrives = null;
                     Console.Write("Set up a price range (Min-Max) or ( 0 ) to skip: ");
                     userinput = Console.ReadLine();
@@ -654,7 +646,6 @@ while (true)
                 Console.WriteLine("You dont have Motherboard to add a Drives\n");
             }
             break;
-        
         case "b":
             if (computer.Mboard == null || computer.Cpu.Count == 0 || computer.Ram.Count == 0 || computer.Gpu.Count == 0 || computer.Drive.Count ==0)
             {
@@ -694,7 +685,6 @@ while (true)
             }
             Environment.Exit(0);
             break;
-        
         case "c":
             Console.WriteLine(computer.ShortInfo());
             Console.Write("r  | Remove element\n" +
@@ -705,7 +695,6 @@ while (true)
             switch (userinput)
             {
                 case "r":
-                    
                     Console.WriteLine(computer.ShortInfo());
                     if (cartCount == 0)
                     {
@@ -715,7 +704,6 @@ while (true)
                     {
                         Console.Write("Enter  name of detail to remove: ");
                         userinput = Console.ReadLine();
-                        
                         if (computer.Mboard.Name == userinput)
                         {
                             computer.Mboard =null;
@@ -725,7 +713,6 @@ while (true)
                             computer.Drive.Clear();
                             cartCount = 0;
                         }
-
                         if (computer.Cpu.Count != 0)
                         {
                             foreach (var cpu in computer.Cpu.ToList())
@@ -741,7 +728,6 @@ while (true)
                                 }
                             }
                         }
-
                         if (computer.Ram.Count != 0)
                         {
                             foreach (var ram in computer.Ram.ToList())
@@ -757,7 +743,6 @@ while (true)
                                 }    
                             }
                         }
-
                         if (computer.Gpu.Count != 0)
                         {
                             foreach (var gpu in computer.Gpu.ToList())
@@ -773,7 +758,6 @@ while (true)
                                 }    
                             }
                         }
-
                         if (computer.Drive.Count != 0)
                         {
                             foreach (var drive in computer.Drive.ToList())
@@ -791,7 +775,6 @@ while (true)
                         }
                     }
                     break;
-                
                 case "rs":
                     Console.Write("Are you sure want to reset all from your cart? (Yes/No): ");
                     userinput = Console.ReadLine();
@@ -809,13 +792,10 @@ while (true)
                             break;
                     }
                     break;
-
                 case "q":
                     break;
-                
             }
             break;
-
         case "e":
             Environment.Exit(0);
             break;

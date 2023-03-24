@@ -33,7 +33,6 @@ while (true)
             ramslots = computer.Mboard.SlotsCount;
             driveslots = computer.Mboard.ConnectInterface.Values.Count;
             break;
-        
         case "2":
             if (computer.Mboard != null)
             {
@@ -57,8 +56,6 @@ while (true)
                 Console.WriteLine("No motherboard, please add it");
             }
             break;
-        
-        
         case "3":
             if (computer.Mboard != null)
             {
@@ -82,7 +79,6 @@ while (true)
                 Console.WriteLine("No motherboard, please add it");
             }
             break;
-        
         case "4":
             if (computer.Mboard != null)
             {
@@ -106,7 +102,6 @@ while (true)
                 Console.WriteLine("No motherboard, please add it");
             }
             break;
-        
         case "5":
             if (computer.Mboard != null)
             {
@@ -121,18 +116,15 @@ while (true)
                 {
                     Console.WriteLine("Ammount of Drives is to much that you Motherboard suppport!");
                 }
-
             }
             else
             {
                 Console.WriteLine("No motherboard, please add it");
             }
             break;
-
         case "i":
             Console.WriteLine(computer.ShowAllInfo());
             break;
-        
         case "q":
             Environment.Exit(0);
             break;
