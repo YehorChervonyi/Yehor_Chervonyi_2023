@@ -7,6 +7,7 @@ var stock = new DetailStock();
 Console.Write("Enter your all computer budget: ");
 int userBudget = Convert.ToInt32(Console.ReadLine());
 var computer = new Computer();
+string userinput;
 int cartCount = 0;
 int number;
 int budget;
@@ -30,7 +31,7 @@ while (true)
                   "b | Buy computer\n" + 
                   "e | Exit programm\n" +
                   "> ");
-    string userinput = Console.ReadLine();
+    userinput = Console.ReadLine();
 
     switch (userinput)
     {
@@ -54,31 +55,7 @@ while (true)
                 number++;
             }
 
-            Console.Write("a | Add to cart\n" +
-                          "q | Quit browsing\n" +
-                          ">");
-            userinput = Console.ReadLine();
-            switch (userinput)
-            {
-                case "a":
-                    Console.Write("Add to cart(Name  of Motherboard): ");
-                    userinput = Console.ReadLine();
-                    foreach (var mboard in mboards)
-                    {
-                        if (mboard.Name == userinput)
-                        {
-                            cartCount = 0;
-                            computer.AddMboardFromStock(mboard);
-                            cpuslots = computer.Mboard.CpuSlots;
-                            ramslots = computer.Mboard.SlotsCount;
-                            pcieslots = computer.Mboard.PcieSlots;
-                            conninterfaces = computer.Mboard.ConnectInterface.Values.Count;
-                        }
-                    }
-                    break;
-                case "q":
-                    break;
-            }
+            CartMenu(mboards);
             break;
         case "2":
             number = 1;
@@ -86,44 +63,25 @@ while (true)
             {
                 if (cpuslots >0)
                 {
-                    IEnumerable<Cpu> bcpus = null;
+                    IEnumerable<Cpu> sortedcpus = null;
                     Console.Write("Set up a price range (Min-Max) or ( 0 ) to skip: ");
                     userinput = Console.ReadLine();
                     if (userinput.Contains("-"))
                     {
                         var pricerange = userinput.Split("-").ToList();
-                        bcpus = from x in stock.cpus where x.Price >= Convert.ToInt32(pricerange[0]) && x.Price <= Convert.ToInt32(pricerange[1]) && x.Socket == computer.Mboard.Socket orderby x.Price select x;
+                        sortedcpus = from x in stock.cpus where x.Price >= Convert.ToInt32(pricerange[0]) && x.Price <= Convert.ToInt32(pricerange[1]) && x.Socket == computer.Mboard.Socket orderby x.Price select x;
                     }
                     else
                     {
-                        bcpus = from x in stock.cpus where x.Price <= userBudget && x.Socket == computer.Mboard.Socket select x;
+                        sortedcpus = from x in stock.cpus where x.Price <= userBudget && x.Socket == computer.Mboard.Socket select x;
                     }
-                    foreach (var cpu in bcpus)
+                    foreach (var cpu in sortedcpus)
                     {
                         Console.WriteLine($"\t{number}\n{cpu.ShowInfo()}");
                         number++;
                     }
-                    Console.Write("a | Add to cart\n" +
-                                  "q | Quit browsing\n" +
-                                  ">");
-                    userinput = Console.ReadLine();
-                    switch (userinput)
-                    {
-                        case "a":
-                            Console.Write("Add to cart(Name of CPU): ");
-                            userinput = Console.ReadLine();
-                            foreach (var cpu in bcpus)
-                            {
-                                if (cpu.Name == userinput)
-                                {
-                                    computer.Cpu.Add(cpu);
-                                    cpuslots--;
-                                }
-                            }
-                            break;
-                        case "q":
-                            break;
-                    }
+                    CartMenu(sortedcpus);
+                    
                 }
                 else
                 {
@@ -146,44 +104,24 @@ while (true)
             {
                 if (ramslots>0)
                 {
-                    IEnumerable<Ram> brams = null;
+                    IEnumerable<Ram> sortedrams = null;
                     Console.Write("Set up a price range (Min-Max) or ( 0 ) to skip: ");
                     userinput = Console.ReadLine();
                     if (userinput.Contains("-"))
                     {
                         var pricerange = userinput.Split("-").ToList();
-                        brams = from x in stock.rams where x.Price >= Convert.ToInt32(pricerange[0]) && x.Price <= Convert.ToInt32(pricerange[1]) && x.Type == computer.Mboard.RamSupport orderby x.Price select x;
+                        sortedrams = from x in stock.rams where x.Price >= Convert.ToInt32(pricerange[0]) && x.Price <= Convert.ToInt32(pricerange[1]) && x.Type == computer.Mboard.RamSupport orderby x.Price select x;
                     }
                     else
                     {
-                        brams = from x in stock.rams where x.Price <= userBudget && x.Type == computer.Mboard.RamSupport select x;
+                        sortedrams = from x in stock.rams where x.Price <= userBudget && x.Type == computer.Mboard.RamSupport select x;
                     }
-                    foreach (var ram in brams)
+                    foreach (var ram in sortedrams)
                     {
                         Console.WriteLine($"\t{number}\n{ram.ShowInfo()}");
                         number++;
                     }
-                    Console.Write("a | Add to cart\n" +
-                                  "q | Quit browsing\n" +
-                                  ">");
-                    userinput = Console.ReadLine();
-                    switch (userinput)
-                    {
-                        case "a":
-                            Console.Write("Add to cart(Name of RAM): ");
-                            userinput = Console.ReadLine();
-                            foreach (var ram in brams)
-                            {
-                                if (ram.Name == userinput)
-                                {
-                                    computer.Ram.Add(ram);
-                                    ramslots--;
-                                }
-                            }
-                            break;
-                        case "q":
-                            break;
-                    }
+                    CartMenu(sortedrams);
                 }
                 else
                 {
@@ -206,44 +144,24 @@ while (true)
             {
                 if (pcieslots>0)
                 {   
-                    IEnumerable<Gpu> bgpus = null;
+                    IEnumerable<Gpu> sortedgpus = null;
                     Console.Write("Set up a price range (Min-Max) or ( 0 ) to skip: ");
                     userinput = Console.ReadLine();
                     if (userinput.Contains("-"))
                     {
                         var pricerange = userinput.Split("-").ToList();
-                        bgpus = from x in stock.gpus where x.Price >= Convert.ToInt32(pricerange[0]) && x.Price <= Convert.ToInt32(pricerange[1]) orderby x.Price select x;
+                        sortedgpus = from x in stock.gpus where x.Price >= Convert.ToInt32(pricerange[0]) && x.Price <= Convert.ToInt32(pricerange[1]) orderby x.Price select x;
                     }
                     else
                     {
-                        bgpus = from x in stock.gpus where x.Price <= userBudget select x;
+                        sortedgpus = from x in stock.gpus where x.Price <= userBudget select x;
                     }
-                    foreach (var gpu in bgpus)
+                    foreach (var gpu in sortedgpus)
                     {
                         Console.WriteLine($"\t{number}\n{gpu.ShowInfo()}");
                         number++;
                     }
-                    Console.Write("a | Add to cart\n" +
-                                  "q | Quit browsing\n" +
-                                  ">");
-                    userinput = Console.ReadLine();
-                    switch (userinput)
-                    {
-                        case "a":
-                            Console.Write("Add to cart(Name of GPU): ");
-                            userinput = Console.ReadLine();
-                            foreach (var gpu in bgpus)
-                            {
-                                if (gpu.Name == userinput)
-                                {
-                                    computer.Gpu.Add(gpu);
-                                    pcieslots--;
-                                }
-                            }
-                            break;
-                        case "q":
-                            break;
-                    }
+                    CartMenu(sortedgpus);
                 }
                 else
                 {
@@ -266,51 +184,30 @@ while (true)
             {
                 if (conninterfaces>0)
                 {
-                    IEnumerable<Drive> bdrives = null;
+                    IEnumerable<Drive> sorteddrives = null;
                     Console.Write("Set up a price range (Min-Max) or ( 0 ) to skip: ");
                     userinput = Console.ReadLine();
                     if (userinput.Contains("-"))
                     {
                         var pricerange = userinput.Split("-").ToList();
-                        bdrives = from x in stock.drives from y in computer.Mboard.ConnectInterface 
+                        sorteddrives = from x in stock.drives from y in computer.Mboard.ConnectInterface 
                             where x.Price >= Convert.ToInt32(pricerange[0]) && x.Price <= Convert.ToInt32(pricerange[1]) && x.ConnectInterface == y.Key && y.Value > 0 
                             orderby x.Price select x;
                     }
                     else
                     {
-                        bdrives = from x in stock.drives
+                        sorteddrives = from x in stock.drives
                             from y in computer.Mboard.ConnectInterface
                             where x.Price <= userBudget && x.ConnectInterface == y.Key && y.Value > 0
                             select x;
                     }
                     
-                    foreach (var drive in bdrives)
+                    foreach (var drive in sorteddrives)
                     {
                         Console.WriteLine($"\t{number}\n{drive.ShowInfo()}");
                         number++;
                     }
-                    Console.Write("a | Add to cart\n" +
-                                  "q | Quit browsing\n" +
-                                  ">");
-                    userinput = Console.ReadLine();
-                    switch (userinput)
-                    {
-                        case "a":
-                            Console.Write("Add to cart(Name of Drive): ");
-                            userinput = Console.ReadLine();
-                            foreach (var drive in bdrives)
-                            {
-                                if (drive.Name == userinput)
-                                {
-                                    computer.Mboard.ConnectInterface[$"{drive.ConnectInterface}"] -= 1;
-                                    computer.Drive.Add(drive);
-                                    conninterfaces--;
-                                }
-                            }
-                            break;
-                        case "q":
-                            break;
-                    }
+                    CartMenu(sorteddrives);
                 }
                 else
                 {
@@ -339,22 +236,18 @@ while (true)
                 {
                     totalprice += cpu.Price;
                 }
-
                 foreach (var ram in computer.Ram)
                 {
                     totalprice += ram.Price;
                 }
-
                 foreach (var gpu in computer.Gpu)
                 {
                     totalprice += gpu.Price;
                 }
-
                 foreach (var drive in computer.Drive)
                 {
                     totalprice += drive.Price;
                 }
-
                 if (totalprice>userBudget)
                 {
                     Console.WriteLine("Sorry, but you budget is too low for this computer setup");
@@ -396,63 +289,19 @@ while (true)
                         }
                         if (computer.Cpu.Count != 0)
                         {
-                            foreach (var cpu in computer.Cpu.ToList())
-                            {
-                                for (int i = 0; i < 1; i++)
-                                {
-                                    if (cpu.Name == userinput)
-                                    {
-                                        computer.Cpu.Remove(cpu);
-                                        cartCount--;
-                                        cpuslots++;
-                                    }
-                                }
-                            }
+                            DetailRemove(computer.Cpu.ToList());
                         }
                         if (computer.Ram.Count != 0)
                         {
-                            foreach (var ram in computer.Ram.ToList())
-                            {
-                                for (int i = 0; i < 1; i++)
-                                {
-                                    if (ram.Name == userinput)
-                                    {
-                                        computer.Ram.Remove(ram);
-                                        cartCount--;
-                                        ramslots++;
-                                    }
-                                }    
-                            }
+                            DetailRemove(computer.Ram.ToList());
                         }
                         if (computer.Gpu.Count != 0)
                         {
-                            foreach (var gpu in computer.Gpu.ToList())
-                            {
-                                for (int i = 0; i < 1; i++)
-                                {
-                                    if (gpu.Name == userinput)
-                                    {
-                                        computer.Gpu.Remove(gpu);
-                                        cartCount--;
-                                        pcieslots++;
-                                    }
-                                }    
-                            }
+                            DetailRemove(computer.Gpu.ToList());
                         }
                         if (computer.Drive.Count != 0)
                         {
-                            foreach (var drive in computer.Drive.ToList())
-                            {
-                                for (int i = 0; i < 1; i++)
-                                {
-                                    if (drive.Name == userinput)
-                                    {
-                                        computer.Drive.Remove(drive);
-                                        cartCount--;
-                                        conninterfaces++;
-                                    }
-                                }    
-                            }
+                            DetailRemove(computer.Drive.ToList());
                         }
                     }
                     break;
@@ -480,5 +329,99 @@ while (true)
         case "e":
             Environment.Exit(0);
             break;
+    }
+}
+
+void CartMenu(IEnumerable<Detail> sortedlist)
+{
+    Console.Write("a | Add to cart\n" +
+                  "q | Quit browsing\n" +
+                  ">");
+    userinput = Console.ReadLine();
+    switch (userinput)
+    {
+        case "a":
+            Console.Write("Add to cart(Name of CPU): ");
+            userinput = Console.ReadLine();
+            var whatdetail = sortedlist.First().GetType().ToString().Split(".").Last();
+            
+            foreach (var detail in sortedlist)
+            {
+                if (detail.Name == userinput)
+                {
+                    switch (whatdetail)
+                    {
+                        case "Motherboard":
+                            cartCount = 0;
+                            computer.AddMboardFromStock((Motherboard)detail);
+                            cpuslots = computer.Mboard.CpuSlots;
+                            ramslots = computer.Mboard.SlotsCount;
+                            pcieslots = computer.Mboard.PcieSlots;
+                            conninterfaces = computer.Mboard.ConnectInterface.Values.Count;
+                            break;
+                        case "Cpu":
+                            computer.Cpu.Add((Cpu)detail);
+                            cpuslots--;
+                            break;
+                        case "Ram":
+                            computer.Ram.Add((Ram)detail);
+                            ramslots--;
+                            break;
+                        case "Gpu":
+                            computer.Gpu.Add((Gpu)detail);
+                            pcieslots--;
+                            break;
+                        case "Drive":
+                            computer.Drive.Add((Drive)detail);
+                            conninterfaces--;
+                            break;
+                    }
+                }
+            }
+            break;
+        case "q":
+            break;
+    }
+}
+
+void DetailRemove(IEnumerable<Detail> detaillist)
+{
+    var whatdetail = detaillist.First().GetType().ToString().Split(".").Last();
+    foreach (var detail in detaillist)
+    {
+        if (detail.Name == userinput)
+        {
+            switch (whatdetail)
+            {
+                case "Motherboard":
+                    computer.Mboard =null;
+                    computer.Cpu.Clear();
+                    computer.Ram.Clear();
+                    computer.Gpu.Clear();
+                    computer.Drive.Clear();
+                    cartCount = 0;
+                    break;
+                case "Cpu":
+                    computer.Cpu.Remove((Cpu)detail);
+                    cartCount--;
+                    cpuslots++;
+                    break;
+                case "Ram":
+                    computer.Ram.Remove((Ram)detail);
+                    cartCount--;
+                    ramslots++;
+                    break;
+                case "Gpu":
+                    computer.Gpu.Remove((Gpu)detail);
+                    cartCount--;
+                    pcieslots++;
+                    break;
+                case "Drive":
+                    computer.Drive.Remove((Drive)detail);
+                    cartCount--;
+                    conninterfaces++;
+                    break;
+            }
+        }
     }
 }
