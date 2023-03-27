@@ -49,6 +49,5 @@ public class Drive : Detail
                    $"Speed: {Speed}\n" +
                    $"Lifetime: {Lifetime}\n" + baseInfo + "\n";    
         }
-        
     }
 }

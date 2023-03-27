@@ -196,7 +196,6 @@ while (true)
                             where x.Price <= userBudget && x.ConnectInterface == y.Key && y.Value > 0
                             select x;
                     }
-                    
                     foreach (var drive in sorteddrives)
                     {
                         Console.WriteLine($"\t| {number} |\n{drive.ShowInfo()}");
