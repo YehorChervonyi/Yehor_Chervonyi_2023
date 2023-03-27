@@ -35,7 +35,7 @@ public class Drive : Detail
             var baseInfo = base.ShowInfo();
             return $"--Drive--\n" +
                    $"Size: {Size}\n" +
-                   $"Type: {Type}" +
+                   $"Type: {Type}\n" +
                    $"Connection Interface: {ConnectInterface}\n" +
                    $"Speed: {Speed}\n" + baseInfo + "\n";
         }
