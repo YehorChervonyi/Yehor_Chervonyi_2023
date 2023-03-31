@@ -1,11 +1,10 @@
 ﻿namespace Open_Closed;
 
 public class MagicClass
-{
-    public int magic;
-    public virtual string CountYourMagic()
+{ 
+    public virtual void CountYourMagic(int magic)
     {
-        return "I understand you...";
+        Console.WriteLine("I understand you...");
     }
 }
     

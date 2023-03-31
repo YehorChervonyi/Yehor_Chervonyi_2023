@@ -2,16 +2,11 @@
 
 public class FireMagicClass:MagicClass
 {
-    public override string CountYourMagic()
+    public override void CountYourMagic(int magic)
     {
-        string baseMagicCount = base.CountYourMagic();
         if (magic == 150)
         {
-            return "Wow, your magic is fire magic!\n" + baseMagicCount;
-        }
-        else
-        {
-            return baseMagicCount;
+            Console.WriteLine("Wow, your magic is fire magic!");
         }
     }
 }

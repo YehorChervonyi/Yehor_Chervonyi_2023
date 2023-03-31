@@ -2,16 +2,11 @@
 
 public class WaterMagicClass:MagicClass
 {
-    public override string CountYourMagic()
+    public override void CountYourMagic(int magic)
     {
-        string baseMagicCount = base.CountYourMagic();
         if (magic == 50000000)
         {
-            return "Incredible! You have 50 millions of power! It's water magic!\n" + baseMagicCount;
-        }
-        else
-        {
-            return baseMagicCount;
+            Console.WriteLine("Incredible! You have 50 millions of power! It's water magic!");
         }
     }
 }
