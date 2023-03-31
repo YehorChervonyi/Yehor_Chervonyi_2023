@@ -12,18 +12,28 @@
             Name = name; 
             Balance = balance;
         }
-        
-        public string GetBalance(int id)
+
+        public List<Customer> CustomersList = new List<Customer>()
         {
-            return $"Your balance is: {Balance}";
+            new Customer(1, "Fikus", 0),
+            new Customer(2, "VHarbar", 100000)
+        };
+
+        public void GetBalanceById(int id)
+        {
+            Console.WriteLine($"Your balance is: {GetCustomerById(id).Balance}");
+        }
+        public Customer GetCustomerById(int id)
+        {
+            return CustomersList.FirstOrDefault(x => x.Id == id);
         }
         public void SaveToDatabase()
         {
             Console.WriteLine("Saved!");
         }
-        public void UpdateBalance(decimal newBalance)
+        public void UpdateBalance(int id, decimal newBalance)
         {
-            this.Balance = newBalance;
+            GetCustomerById(id).Balance = newBalance;
             SaveToDatabase();
         }
     }
