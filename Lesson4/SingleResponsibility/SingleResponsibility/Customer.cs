@@ -12,23 +12,5 @@
             Name = name; 
             Balance = balance;
         }
-
-        public string GetBalanceById(List<Customer> list, int id)
-        {
-            return $"Your balance is: {GetCustomerById(list, id).Balance}";
-        }
-        public Customer GetCustomerById(List<Customer> list, int id)
-        {
-            return list.FirstOrDefault(x => x.Id == id);
-        }
-        public string SaveToDatabase()
-        {
-            return "Saved!";
-        }
-        public void UpdateBalance(List<Customer> list, int id, decimal newBalance)
-        {
-            GetCustomerById(list, id).Balance = newBalance;
-            SaveToDatabase();
-        }
     }
 }
