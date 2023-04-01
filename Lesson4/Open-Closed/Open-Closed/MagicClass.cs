@@ -2,7 +2,7 @@
 
 public class MagicClass
 { 
-    public virtual void CountYourMagic(int magic)
+    public virtual void CountYourMagic()
     {
         Console.WriteLine("I understand you...");
     }
