@@ -22,7 +22,9 @@ public class Menu
                 Console.WriteLine(WorkingWithFiles.ReadFile(input));
                 break;
             case "rm":
-                Console.Write("File/Dir name to delete: ");
+                Console.Write("To delete dir: dirname/\n" +
+                              "To delete file: filename\n" +
+                              "File/Dir name to delete: ");
                 input = Console.ReadLine();
                 if (input[^1..] == "/" || input[^1..] == @"\")
                 {
@@ -34,7 +36,10 @@ public class Menu
                 }
                 break;
             case "m":
-                Console.Write("File/Dir name to move: ");
+                Console.Write("To move dir: dirname/\n" +
+                              "enter a folder that does not yet exist, it create automaticaly" +
+                              "To move file: filename\n" +
+                              "File/Dir name to move: ");
                 input = Console.ReadLine();
                 if (input[^1..] == "/" || input[^1..] == @"\")
                 {
@@ -52,7 +57,11 @@ public class Menu
                 }
                 break;
             case "c":
-                Console.Write("File/Dir name to move: ");
+                Console.Write("To copy dir: dirname/\n" +
+                              "enter a folder that does not yet exist, it create automaticaly\n" +
+                              "Dir content copying to a new dir\n" +
+                              "To copy file: filename\n" +
+                              "File/Dir name to copy: ");
                 input = Console.ReadLine();
                 if (input[^1..] == "/" || input[^1..] == @"\")
                 {
@@ -70,7 +79,9 @@ public class Menu
                 }
                 break;
             case "i":
-                Console.Write("File/Dir name to get info: ");
+                Console.Write("To get dir info: dirname/\n" +
+                              "To get file info: filename\n" +
+                              "File/Dir name to get info: ");
                 input = Console.ReadLine();
                 if (input[^1..] == "/" || input[^1..] == @"\")
                 {

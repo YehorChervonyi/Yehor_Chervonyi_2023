@@ -24,7 +24,7 @@ public class WorkingWithFileSystem
                           "--------------------------------+" +
                           "------------------+" +              
                           "--------------------------\n" +
-                          "m - menu d - show all drives");       
+                          "| m - menu | d - show all drives |");       
     }
     public static void GetDrives()
     {
