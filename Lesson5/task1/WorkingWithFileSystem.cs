@@ -13,7 +13,7 @@ public class WorkingWithFileSystem
                           "----| Creation time |-----");
         foreach (var dir in dirs)
         {
-            Console.WriteLine(String.Format("| {0,-30}|\t{1,-25}|\t{2,-12}|\t{3,-22}|", dir.Split('\\').Last()+"/", Directory.GetLastWriteTime(dir), "Folder" , Directory.GetCreationTime(dir)));
+            Console.WriteLine(String.Format("| {0,-30}|\t{1,-25}|\t{2,-12}|\t{3,-22}|", dir.Split('\\').Last()+@"\", Directory.GetLastWriteTime(dir), "Folder" , Directory.GetCreationTime(dir)));
         }
         foreach (var file in files)
         {

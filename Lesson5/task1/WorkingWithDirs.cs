@@ -19,9 +19,11 @@ public static class WorkingWithDirs
         what = Path.Combine(Directory.GetCurrentDirectory(), what);
         if (Directory.Exists(what))
         {
-            if (!Directory.Exists(to))
+            if (Directory.Exists(to))
             {
-                Directory.Move(what,to);
+                var dest = Path.Combine(to, what.Split("\\")[^2]);
+                Console.WriteLine(dest);
+                Directory.Move(what, dest);
             }
             else
             {
