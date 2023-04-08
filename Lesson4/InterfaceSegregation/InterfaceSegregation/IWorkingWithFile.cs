@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LiskovSubstitution
 {
-    public interface IWorkingWithFile
+    public interface IWorkingWithFile : IReadFromFile, IWriteToFile, DeleteFile, IDownloadFile, ICopyFile, IGetDataFromFile, ICheckFile, ISaveToFile, ICheckRole, ICheckUser
     {
         public string? ReadFromFile(string filename);
         public void WriteToFile(string filename);
