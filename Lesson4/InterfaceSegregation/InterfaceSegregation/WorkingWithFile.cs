@@ -2,56 +2,129 @@
 
 public class WorkingWithFile : IWorkingWithFile
 {
- public Guid CheckUser(Guid user)
+ public Guid? CheckUser(Guid user)
  {
-  //Checking for user in db
+  // if user in db
   return user;
+  //else
+  return null;
  }
 
- public Guid CheckRole(Guid role)
+ public Guid? CheckRole(Guid role)
  {
-  //Checking for user role
-  return role;
+  var user = CheckUser(Guid.Empty);
+  if (user != null)
+  {
+   return role;
+  }
+  else
+  {
+   return null;
+  }
  }
 
- public string ReadFromFile(string filename)
+ public string? ReadFromFile(string filename)
  {
-  //Reading from file
-  return ""; //Some text in file
+  var role = CheckRole(Guid.Empty);
+  if (role != null)
+  {
+   return ""; //Some text from file
+  }
+  else
+  {
+   // Return error about wrong role
+   return null;
+  }
  }
 
  public void WriteToFile(string filename)
  {
-  //Write to file
+  var role = CheckRole(Guid.Empty);
+  if (role != null)
+  {
+   // Give access to write to file
+  }
+  else
+  {
+   // Return error about wrong role
+  }
  }
 
  public void DeleteFile(string filename)
  {
-  //Delete file
+  var role = CheckRole(Guid.Empty);
+  if (role != null)
+  {
+   // Give access to delete file
+  }
+  else
+  {
+   // Return error about wrong role
+  }
  }
 
  public void DownloadFile(string filename)
  {
-  //Download file
+  var role = CheckRole(Guid.Empty);
+  if (role != null)
+  {
+   // Give access to download file
+  }
+  else
+  {
+   // Return error about wrong role
+  }
  }
 
  public void CopyFile(string filename)
  {
-  //Copy file
+  var role = CheckRole(Guid.Empty);
+  if (role != null)
+  {
+   // Give access to copy file
+  }
+  else
+  {
+   // Return error about wrong role
+  }
  }
 
  public void GetDataFromFile(string filename)
  {
-  //Get data from file
+  var role = CheckRole(Guid.Empty);
+  if (role != null)
+  {
+   // Give access to get data from file
+  }
+  else
+  {
+   // Return error about wrong role
+  }
  }
 
  public void CheckFile(string filename)
  {
-  //Check file
+  var role = CheckRole(Guid.Empty);
+  if (role != null)
+  {
+   // Give access to check file
+  }
+  else
+  {
+   // Return error about wrong role
+  }
  }
 
  public void SaveToFile(string filename)
  {
-  //Save to file
+  var role = CheckRole(Guid.Empty);
+  if (role != null)
+  {
+   // Give access to svae data to file
+  }
+  else
+  {
+   // Return error about wrong role
+  }
  }
 }

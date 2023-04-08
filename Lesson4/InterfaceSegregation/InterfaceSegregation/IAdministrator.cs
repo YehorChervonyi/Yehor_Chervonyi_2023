@@ -2,7 +2,7 @@
 
 public interface IAdministrator : IWorkingWithFile
 {
-    public string ReadFromFile(string filename);
+    public string? ReadFromFile(string filename);
     public void WriteToFile(string filename);
     public void DeleteFile(string filename);
     public void DownloadFile(string filename);
