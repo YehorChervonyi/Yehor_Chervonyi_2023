@@ -26,7 +26,7 @@ public class Menu
                               "To delete file: filename\n" +
                               "File/Dir name to delete: ");
                 input = Console.ReadLine();
-                if (input[^1..] == "/" || input[^1..] == @"\")
+                if (input[^1..] == @"\")
                 {
                     WorkingWithDirs.RemoveDir(input);    
                 }
@@ -36,12 +36,12 @@ public class Menu
                 }
                 break;
             case "m":
-                Console.Write("To move dir: dirname/\n" +
-                              "enter a folder that does not yet exist, it create automaticaly" +
+                Console.Write("To move dir: dirname\\\n" +
+                              "enter whole path to destination folder" +
                               "To move file: filename\n" +
                               "File/Dir name to move: ");
                 input = Console.ReadLine();
-                if (input[^1..] == "/" || input[^1..] == @"\")
+                if (input[^1..] == @"\")
                 {
                     string name = input;
                     Console.Write("Destination directory: ");
@@ -63,7 +63,7 @@ public class Menu
                               "To copy file: filename\n" +
                               "File/Dir name to copy: ");
                 input = Console.ReadLine();
-                if (input[^1..] == "/" || input[^1..] == @"\")
+                if (input[^1..] == @"\")
                 {
                     string name = input;
                     Console.Write("Destination directory: ");
@@ -83,7 +83,7 @@ public class Menu
                               "To get file info: filename\n" +
                               "File/Dir name to get info: ");
                 input = Console.ReadLine();
-                if (input[^1..] == "/" || input[^1..] == @"\")
+                if (input[^1..] == @"\")
                 {
                     var info = new DirectoryInfo(Path.Combine(Directory.GetCurrentDirectory(), input));
                     Console.WriteLine($"-----Directory Info-----\n" +
