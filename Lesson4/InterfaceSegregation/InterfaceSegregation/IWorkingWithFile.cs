@@ -16,6 +16,8 @@ namespace LiskovSubstitution
         public void GetDataFromFile(string filename);
         public void CheckFile(string filename);
         public void SaveToFile(string filename);
+        public Guid? CheckRole(Guid role);
+        public Guid? CheckUser(Guid user);
         
     }
 }

@@ -4,41 +4,127 @@ public class User : IWorkingWithFile
 {
     public string? ReadFromFile(string filename)
     {
-        return ""; //Some text from file
+        var role = CheckRole(Guid.Empty);
+        if (role != null)
+        {
+            return ""; //Some text from file
+        }
+        else
+        {
+            // Return error about wrong role
+            return null;
+        }
     }
 
     public void WriteToFile(string filename)
-    { 
-        // Give access to write to file
+    {
+        var role = CheckRole(Guid.Empty);
+        if (role != null)
+        {
+            // Give access to write to file
+        }
+        else
+        {
+            // Return error about wrong role
+        }
     }
 
     public void DeleteFile(string filename)
     {
-        // Give access to delete file
+        var role = CheckRole(Guid.Empty);
+        if (role != null)
+        {
+            // Give access to delete file
+        }
+        else
+        {
+            // Return error about wrong role
+        }
     }
 
     public void DownloadFile(string filename)
     {
-        // Give access to download file
+        var role = CheckRole(Guid.Empty);
+        if (role != null)
+        {
+            // Give access to download file
+        }
+        else
+        {
+            // Return error about wrong role
+        }
     }
 
     public void CopyFile(string filename)
     {
-        // Give access to copy file
+        var role = CheckRole(Guid.Empty);
+        if (role != null)
+        {
+            // Give access to copy file
+        }
+        else
+        {
+            // Return error about wrong role
+        }
     }
 
     public void GetDataFromFile(string filename)
     {
-        // Give access to get data from file
+        var role = CheckRole(Guid.Empty);
+        if (role != null)
+        {
+            // Give access to get data from file
+        }
+        else
+        {
+            // Return error about wrong role
+        }
     }
 
     public void CheckFile(string filename)
-    { 
-        // Give access to check file
+    {
+        var role = CheckRole(Guid.Empty);
+        if (role != null)
+        {
+            // Give access to check file
+        }
+        else
+        {
+            // Return error about wrong role
+        }
     }
 
     public void SaveToFile(string filename)
     {
-        // Give access to svae data to file
+        var role = CheckRole(Guid.Empty);
+        if (role != null)
+        {
+            // Give access to svae data to file
+        }
+        else
+        {
+            // Return error about wrong role
+        }
+    }
+    
+    public Guid? CheckUser(Guid user)
+    {
+        // if user in db
+        return user;
+        //else
+        return null;
+    }
+
+    public Guid? CheckRole(Guid role)
+    {
+        var user = CheckUser(Guid.Empty);
+        if (user != null)
+        {
+            return role;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

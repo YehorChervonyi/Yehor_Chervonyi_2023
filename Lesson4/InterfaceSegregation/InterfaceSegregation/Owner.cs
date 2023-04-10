@@ -2,5 +2,5 @@
 
 public class Owner : Administrator
 {
-    
+    //Some features for owner
 }
