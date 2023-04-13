@@ -1,6 +1,19 @@
-﻿namespace LiskovSubstitution;
+﻿using LiskovSubstitution.Interfaces;
 
-public class Owner : Administrator
+namespace LiskovSubstitution;
+
+public class Owner : Administrator ,IOwner
 {
-    //Some features for owner
+    public void GetDataFromFile(string filename)
+    {
+        var role = CheckRole(Guid.Empty);
+        if (role != null)
+        {
+            // Give access to get data from file
+        }
+        else
+        {
+            // Return error about wrong role
+        }
+    }
 }
