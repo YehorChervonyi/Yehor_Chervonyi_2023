@@ -1,4 +1,6 @@
 ﻿using task1;
+
+Opetations operation = new Opetations();
 while (true)
 {
     Console.Write("First number: ");
@@ -10,16 +12,16 @@ while (true)
     switch (userinput)
     {
         case "+":
-            Opetations.DoOperation(a,b,Opetations.Add);
+            operation.DoOperation(a,b,operation.Add);
             break;
         case "-":
-            Opetations.DoOperation(a,b,Opetations.Subtract);
+            operation.DoOperation(a,b,operation.Subtract);
             break;
         case "*":
-            Opetations.DoOperation(a,b,Opetations.Multiply);
+            operation.DoOperation(a,b,operation.Multiply);
             break;
         case "/":
-            Opetations.DoOperation(a,b,Opetations.Devide);
+            operation.DoOperation(a,b,operation.Devide);
             break;
     }
 }
