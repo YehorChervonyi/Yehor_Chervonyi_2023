@@ -9,6 +9,9 @@ namespace LiskovSubstitution.Vehicles
 {
     public class Vehicle : Perfomance
     {
-        public string type { get; }
+        public virtual void StartEngine()
+        {
+            Console.WriteLine("The engine is starting");
+        }
     }
 }

@@ -1,7 +1,27 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using LiskovSubstitution.Vehicles;
 
-using LiskovSubstitution.Vehicles;
+Vehicle veh = new Vehicle();
+Vehicle moto = new Motorcycle();
+Vehicle car = new Car();
+Vehicle airplane = new Airplane();
 
-Console.WriteLine("Hello, World!");
-Vehicle vehicle = new Motorcycle();
-vehicle.StartEngine();
+List<Vehicle> list = new List<Vehicle>()
+{
+    new Vehicle(),
+    new Motorcycle(),
+    new Car(),
+    new Airplane()
+};
+
+foreach (var vehicle in list)
+{
+    vehicle.PerformActions(vehicle);
+}
+
+
+
+
+
+
+
+
