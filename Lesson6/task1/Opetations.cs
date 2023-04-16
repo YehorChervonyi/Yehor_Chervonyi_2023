@@ -1,5 +1,5 @@
 ﻿namespace task1;
-public class Opetations
+public class Opetations : IOperations
 {
     public delegate float Operation(float a, float b);
     public delegate void OperationHandler(string message);
