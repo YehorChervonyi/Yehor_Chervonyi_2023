@@ -2,5 +2,5 @@
 
 public interface IRidable
 {
-    public void Ride();
+    void Ride();
 }

@@ -8,6 +8,6 @@ namespace LiskovSubstitution.Interfaces
 {
     public interface IFlyable
     {
-        public void Fly();
+        void Fly();
     }
 }
